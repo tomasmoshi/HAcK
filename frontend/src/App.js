@@ -10,7 +10,7 @@ function App() {
 
   useEffect(() => {
     socket.on('temp', setTemp);
-    socket.on('ultrasonic', setUltrasonic);
+    socket.on('distance', setUltrasonic);
     socket.on('humidity', setHumidity);
 
     const handleKeyDown = (event) => {
@@ -62,6 +62,14 @@ function App() {
     socket.emit('send-pinch-value', value);
   };
 
+  const sendGrab = () => {
+    socket.emit('send-arm-command', 'grab');
+  };
+
+  const sendRelease = () => {
+    socket.emit('send-arm-command', 'release');
+  };
+
   return (
     <div className="App">
       <h1>Rover Control</h1>
@@ -71,6 +79,10 @@ function App() {
         <button onClick={() => sendDirection('left')}>Left</button>
         <button onClick={() => sendDirection('right')}>Right</button>
         <button onClick={() => sendDirection('stop')}>Stop</button>
+      </div>
+      <div>
+        <button onClick={sendGrab}>Grab</button>
+        <button onClick={sendRelease}>Release</button>
       </div>
       <div>
         <input
