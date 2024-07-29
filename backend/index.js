@@ -115,7 +115,7 @@ io.on("connection", (socket) => {
     client.publish("pinch", message.toString());
   });
 
-  socket.on("disconnect", () => {
+  socket.on("discssonnect", () => {
     console.log("Frontend disconnected from socket");
   });
 
